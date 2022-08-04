@@ -36,8 +36,6 @@ const HomeScreen = ({navigation}) => {
         headers: headers,
       });
 
-      console.log(resp.status);
-
       if (resp.status == 200) {
         const response = await resp.json();
 

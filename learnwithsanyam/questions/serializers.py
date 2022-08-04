@@ -1,5 +1,3 @@
-from unicodedata import category
-from httplib2 import Response
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from questions.models import LeaderBoard, Questions, Quiz

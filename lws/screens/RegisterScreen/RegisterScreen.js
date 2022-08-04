@@ -67,6 +67,7 @@ const RegisterScreen = ({navigation}) => {
               yourClass: yourClass,
             };
             const hitLink = `${url}user/register`;
+            
 
             try {
               const resp = await fetch(hitLink, {
@@ -82,7 +83,7 @@ const RegisterScreen = ({navigation}) => {
                 setContent('User Registered Successfully');
                 setShowSnack(true);
                 setTimeout(() => {
-                  navigation.replace('Login')
+                  navigation.replace('Login');
                 }, 1500);
               } else {
                 const response = await resp.json();

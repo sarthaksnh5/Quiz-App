@@ -98,6 +98,9 @@ const UserScreen = ({navigation}) => {
           await storeAsycnData(ImageConstant, JSON.stringify({imageUri}));
           navigation.navigate('Image');
         }}
+        infoScreen={() => {
+          navigation.navigate('Info');
+        }}
       />
       <UserDetails
         rank={userRank}

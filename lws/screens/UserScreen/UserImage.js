@@ -9,8 +9,9 @@ import React, {useState} from 'react';
 import {primaryColor} from '../../constants/colors';
 import {LogoutBtn} from '../../AsyncStorageHelpers/AsyncStorageHelpers';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
-const UserImage = ({uri, onPress}) => {
+const UserImage = ({uri, onPress, infoScreen}) => {
   const [loading, setLoading] = useState(true);
 
   return (
@@ -42,6 +43,10 @@ const UserImage = ({uri, onPress}) => {
       <TouchableOpacity onPress={LogoutBtn} style={styles.logoutBtn}>
         <MaterialIcons name="logout" size={24} color={primaryColor} />
       </TouchableOpacity>
+      <TouchableOpacity onPress={infoScreen} style={styles.infoBtn}>
+        <AntDesign name="infocirlce" size={24} color={primaryColor} />
+      </TouchableOpacity>
+      
     </View>
   );
 };
@@ -81,4 +86,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  infoBtn: {
+    position: 'absolute',
+    top: 0,
+    left: 5,
+    padding: 10,
+    width: 50,
+    height: 50,
+    backgroundColor: 'white',
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
 });

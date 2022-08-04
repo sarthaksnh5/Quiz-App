@@ -2,15 +2,14 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import React from 'react';
 import {primaryColor} from '../constants/colors';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import HomeStack from './HomeStack';
 import QuizListSceen from '../screens/QuizListScreen/QuizListSceen';
 import LeaderBoardScreen from '../screens/LeaderBoardScreen/LeaderBoardScreen';
-import UserScreen from '../screens/UserScreen/UserScreen';
 import ProfileStack from './ProfileStack';
+import QuestionStack from './QuestionStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -45,6 +44,18 @@ const BottomTabNavigator = () => {
         name="Favourite"
         component={QuizListSceen}
       />
+
+        <Tab.Screen
+        options={{
+          tabBarLabel: 'Forum',
+          tabBarIcon: ({size, focused, color}) => (
+            <AntDesign name={focused ? "pluscircle" : "pluscircleo"} color={color} size={24} />
+          ),
+        }}
+        name="Question"
+        component={QuestionStack}
+      />
+
       <Tab.Screen
         options={{
           tabBarLabel: 'Leaderboard',

@@ -2,11 +2,11 @@ import json
 import requests
 
 # API = "https://opentdb.com/api.php?amount=50&category=9&difficulty=medium&type=multiple"
-# API = "https://the-trivia-api.com/api/questions?categories=science&limit=20&difficulty=hard"
-API = "https://the-trivia-api.com/api/questions?categories=general_knowledge,history,geography&limit=20&region=IN&difficulty=hard"
-URL = "http://192.168.1.8:8000/questions/registerQuestion"
+API = "https://the-trivia-api.com/api/questions?categories=science&limit=20&difficulty=hard"
+# API = "https://the-trivia-api.com/api/questions?categories=general_knowledge,history,geography&limit=20&region=IN&difficulty=easy"
+URL = "http://192.168.1.8:8001/questions/registerQuestion"
 Headers = {
-    "Authorization": "TOKEN 14b0f7100dd47061afd30c1d9d61002704f2bda4"
+    "Authorization": "TOKEN 4f1194898a6d1ba57651769d23e366fb63589d88"
 }
 
 print('GET Reuqest')
@@ -31,7 +31,7 @@ def storeData(results):
             '1': str(results['incorrectAnswers'][1]),
             '2': str(results['incorrectAnswers'][2]),
         },
-        "category": "Social", 
+        "category": "Science", 
         "difficulty" : "Hard",
     }
 

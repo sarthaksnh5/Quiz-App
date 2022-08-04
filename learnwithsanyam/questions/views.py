@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import status          
 from rest_framework.views import APIView
