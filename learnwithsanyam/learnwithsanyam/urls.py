@@ -10,6 +10,7 @@ urlpatterns = [
     path('api-token-auth', views.obtain_auth_token),
     path('questions/', include('questions.urls')),
     path('forum/', include('forms.urls')),
+    path('api-reset-password/', include('django_rest_passwordreset.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,4 +1,3 @@
-from dataclasses import field
 import random
 import string
 from rest_framework import serializers
