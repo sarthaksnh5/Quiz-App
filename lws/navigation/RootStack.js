@@ -5,6 +5,8 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import MainScreen from '../screens/MainScreen/MainScreen';
 import QuizScreen from '../screens/QuizScreen/QuizScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen/ResetPasswordScreen';
+// import ResetPasswordScreen from '../screens/ResetPasswordScreen/ResetPasswordScreen';
 import ResultScreen from '../screens/ResultScreen/ResultScreen';
 import SingleQuizScreen from '../screens/SingleQuizScreen/SingleQuizScreen';
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
@@ -80,6 +82,14 @@ const RootStack = () => {
           }}
           name="Result"
           component={ResultScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+            animation: 'slide_from_left',
+          }}
+          name="Reset"
+          component={ResetPasswordScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

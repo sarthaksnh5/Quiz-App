@@ -49,6 +49,7 @@ const UserScreen = ({navigation}) => {
 
           if (rankResp.status == 200) {
             const rankResponse = await rankResp.json();
+            
             setUserPoints(rankResponse.points);
             setUserRank(rankResponse.rank);
           }
@@ -89,11 +90,7 @@ const UserScreen = ({navigation}) => {
   return (
     <Background>
       <UserImage
-        uri={
-          imageUri == null
-            ? 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg'
-            : `${url.slice(0, -1)}${imageUri}`
-        }
+        uri={imageUri}
         onPress={async () => {
           await storeAsycnData(ImageConstant, JSON.stringify({imageUri}));
           navigation.navigate('Image');

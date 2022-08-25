@@ -21,7 +21,7 @@ const LeaderBoardScreen = ({navigation}) => {
   ];
   const cateogry = [
     {label: 'Science', value: 'Science'},
-    {label: 'Social Science', value: 'Social'},
+    {label: 'General Knowledge', value: 'General'},
     {label: 'Mathematics', value: 'Math'},
     {label: 'English', value: 'English'},
   ];

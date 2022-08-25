@@ -40,11 +40,12 @@ const UserDetails = ({rank, points, userName, quiz = []}) => {
         contentContainerStyle={{width: '100%'}}>
         {quiz.length > 0 ? (
           quiz.map(item => {
+            
             var icon = '';
-            if (item.category == 'Science') {
+            if (item.category == 'Science' || item.category == 'LWS Genius') {
               icon = 'lab-flask';
             }
-            if (item.category == 'Social') {
+            if (item.category == 'General') {
               icon = 'map';
             }
             if (item.category == 'Math') {
@@ -64,7 +65,7 @@ const UserDetails = ({rank, points, userName, quiz = []}) => {
                   <Text style={styles.subHeading}>{item.difficulty}</Text>
                 </View>
                 <View style={styles.scores}>
-                  <CircularPercent progress={item.points / 10} radius={50} />
+                  <CircularPercent progress={item.points > 10 ? item.points / 100 : item.points / 10} radius={50} />
                 </View>
               </View>
             );
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
     padding: 10,
     zIndex: -1,
     marginTop: '-14%',
+    height: '80%',
   },
   headingContainer: {
     width: '100%',

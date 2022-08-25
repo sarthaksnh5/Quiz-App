@@ -6,12 +6,10 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {font, font_Bold} from '../../constants/fonts';
+import {font_Bold} from '../../constants/fonts';
 import {
   darkPink,
   greyColor,
-  lightGrey,
-  lightPink,
   primaryColor,
   textColor,
 } from '../../constants/colors';
@@ -34,22 +32,46 @@ const LeaderBoardList = ({usersList, leaderLoading}) => {
             {usersList.length > 0 ? (
               usersList.map((item, index) => {
                 return (
-                  <View key={item.id} style={styles.userContainer}>
-                    <View style={styles.positionContainer}>
-                      <Text style={styles.position}>{index + 1}</Text>
+                  <View
+                    key={item.id}
+                    style={[
+                      styles.userContainer,
+                      index == 0 && {backgroundColor: primaryColor},
+                    ]}>
+                    <View
+                      style={[
+                        styles.positionContainer,
+                        index == 0
+                          ? {backgroundColor: primaryColor}
+                          : {backgroundColor: 'white'},
+                      ]}>
+                      <Text
+                        style={[
+                          styles.position,
+                          index == 0 ? {color: 'white'} : {color: greyColor},
+                        ]}>
+                        {index + 1}
+                      </Text>
                     </View>
                     <View style={styles.imageContainer}>
-                      <ProgressiveImage
-                        url={
-                          item.user.avatar == null
-                            ? 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg'
-                            : `${url.slice(0, -1)}${item.user.avatar}`
-                        }
-                      />
+                      <ProgressiveImage uri={item.user.avatar} change={index} />
                     </View>
                     <View style={styles.nameContainer}>
-                      <Text style={styles.name}>{item.user.first_name}</Text>
-                      <Text style={styles.tag}>{item.points} Points</Text>
+                      {index == 0 && <Text style={styles.genius}>LWS Genius</Text>}
+                      <Text
+                        style={[
+                          styles.name,
+                          index == 0 ? {color: 'white'} : {color: textColor},
+                        ]}>
+                        {item.user.first_name}
+                      </Text>
+                      <Text
+                        style={[
+                          styles.tag,
+                          index == 0 ? {color: 'white'} : {color: greyColor},
+                        ]}>
+                        {item.points} Points
+                      </Text>
                     </View>
                   </View>
                 );
@@ -97,14 +119,12 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   position: {
     fontFamily: font_Bold,
     fontSize: 15,
-    color: greyColor,
   },
   imageContainer: {
     width: 75,
@@ -119,12 +139,15 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    color: textColor,
     fontFamily: font_Bold,
   },
   tag: {
     fontSize: 15,
-    color: greyColor,
     fontFamily: font_Bold,
   },
+  genius:{
+    fontFamily: font_Bold,
+    fontSize: 15,
+    color: 'white',
+  }
 });

@@ -19,14 +19,13 @@ const AboutInfo = () => {
       <View style={styles.aboutContainer}>
         <Text style={styles.heading}>My Journey</Text>
         <Text style={styles.para}>
-          A YOUTUBER, with a monetized youtube channel and 8K+
-          subscribers, LEARN WITH SANYAM, PROVIDES FREE EDUCATION, MENTORING TO
-          SCHOOL STUDENTS, ONLINE PLATFORM FOR VARIOUS NATIONAL + INTERNATIONAL
-          COMPETITIONS
+          A youtuber, with a monetized youtube channel LEARN WITH SANYAM, 8K+
+          subscribers, 250+ videos, provides free education, mentoring to
+          school students, online platform for various National + Internation competitions
         </Text>
         <Text style={styles.para}>
-          Working with around, 100 HK NGO STUDENTS , provides them monthly
-          scholarship program from his own pocket money.
+          Working with around, 100 HK NGO students, provides them monthly
+          scholarship program with my own pocket money.
         </Text>
         <Text style={styles.para}>
           Knows HTML, CSS, javascript, core Java, android

@@ -1,4 +1,4 @@
-package com.lws.newarchitecture.components;
+package com.learnwithsanyam.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

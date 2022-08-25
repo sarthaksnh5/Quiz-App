@@ -17,7 +17,7 @@ const RecentQuiz = ({recentQuiz}) => {
           </View>
           <View style={styles.percentContainer}>
             <CircularPercent
-              progress={recentQuiz.data.points / 10}
+              progress={recentQuiz.data.points > 10 ? recentQuiz.data.points / 100 : recentQuiz.data.points / 10}
               radius={55}
             />
           </View>

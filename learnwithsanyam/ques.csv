@@ -1,0 +1,130 @@
+question,correct_answer,0,1,2,difficulty
+What is the total of all the internal angles of a triangle?,180,160,90,190,Easy
+What name is given to a triangle which has two sides of exactly the same length?,Isosceles,Scalene,Equilateral,Right Angled,Easy
+"You have ten grey socks and ten blue socks you want to put into pairs. All socks are exactly the same except for their colour. If you are in the dark and so can’t see, how many socks would you need to take out to ensure you have at least a pair?",Three,Two,One,Four,Easy
+What does 6 to the power 0 equal?,1,6,36,0,Easy
+What is the name given to an angle that measures less than 90 degree?,Acute,Obtuse,Complementary,Supplementary,Easy
+What is the name given to a straight line touching a circle?,A Tangent,A Arc,A segment,A Line,Easy
+"What name is given to the following sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55…?",The Fibonacci sequence,Pascal Series,Geometric series,Arithmetic Series,Easy
+"What is the next number in the series; 1, 4, 9, 16, 25, …?",36,32,30,24,Easy
+What is the highest common factor of 30 and 132?,6,2,3,5,Easy
+What is the value of Pi to four decimal places?,3.1416,3.1254,3.1456,3.1412,Easy
+How many vertices are there on a cube?,8,7,4,6,Easy
+What is the prime number closest to 100?,101,102,105,99,Easy
+What is the sum of the internal angles of a hexagon?,720,360,180,270,Easy
+Which number is represented in binary as 100?,4,8,2,1,Easy
+What was the year 1982 as a Roman Numeral?,MCMLXXXII,MCMLXXX,MCMLX,MCMLXXXX,Easy
+What is the value of e?,2.718,2.723,2.584,2.698,Easy
+"If one angle is 60°, what is the size of its alternate angle?",60,70,50,40,Easy
+"What is the next number in the series; 256, 289, 324, 361,…?",400,420,390,480,Easy
+What is the number zero in Roman numerals?,None of the above,I,II,III,Easy
+"Three people all tell lies one third of the time. There is a coin flip that they all see, and all say is ‘heads’. What’s the probability it is actually ‘heads’?",08/09/22,08/10/22,08/07/22,07/09/22,Easy
+"A man is four times as old as his son. In ten years, the man will be three times as old as his son. What is the man’s current age?",80,70,60,90,Easy
+"Using only addition, how do you add eight 8s to get the number 1000?",888 + 88 + 8 + 8 + 8,888 + 8 + 88,888 + 88,888 + 88 + 8+ 8,Easy
+With which three digit number is the second digit four times as large as the third and the first digit three less than the second?,141,142,140,143,Easy
+"The three volumes of Lord of the Rings sit in order on a shelf. Each is 1 1/4 inches thick, with an inch of pages and 1/8 inch for each cover. A bookworm munches from page 1 of the first volume through to the last page of the third volume. How far does it travel?",1 1/2 inches,1 1/4 inches,1 1/8 inches,1 1/16 inches,Easy
+Which 3 numbers have the same answer whether they’re added or multiplied together?,"1, 2, 3","2, 3, 4","3, 4, 5","5, 6, 7",Easy
+"At a party everyone shook hands with everyone else. In total, there were 66 handshakes. How many people were at the party?",12,14,10,16,Easy
+What are the only regular polygons that tessellate?,"Triangles, squares, and hexagons.","Circle, Triangles","Square, Circle",Circle,Easy
+There are two ways of obtaining the number 100 using 4 sevens and a single one (and whatever mathematical symbol you want. One is 177-77 = 100. What is the other? (And no -77+177 doesn’t count).,(7+7) x (7 + (1/7)),(7 x 7) + (7 + 7),(7 x 7) + (7 x 7),(7 x 7) + (7 x 1/7),Easy
+A hen and a half lays an egg and a half in a day and a half. How many eggs does one hen lay in a single day?,2/3 of an egg,1/2 of an egg,1/3 of an egg,2/5 of an egg,Easy
+What is the volume of a cube that has sides of 7cm?,343,349,371,356,Easy
+"What is the next number in the series: 4, 15, 48, 147, …?",444,454,443,412,Easy
+What is 13²?,169,146,152,178,Easy
+What is the thirteenth prime number?,41,47,37,53,Easy
+What is the only number that is twice the sum of its digits?,18,15,19,17,Easy
+How many hours are there in a year (to the nearest hour)?,8760,8752,8750,8740,Easy
+"As Alice in Wonderland found out, in a room of how many people is the probability that two have the same birthday more than a half?",23,25,24,22,Easy
+What is one twelfth as a decimal?,0.083,0.074,0.041,0.052,Easy
+How many squares are there on a chess board?,204,205,64,256,Easy
+"Pallindromically, what is 111111111 x 111111111?",1.23456789876543E+016,12.3,1.23E+016,1.23E+016,Easy
+What is the formula for a circumference of a circle?,2πr,πr,4πr,8πr,Easy
+What is the area of a triangle?,(base x height)/2,base x height,base / height,Base * 4 / height,Easy
+Pythagoras’ theorem gives a formula for the length of the hypotenuse of a (right angled) triangle based on the lengths of the other sides? The length of the hypotenuse = …..what?,√(a²+b²),(a²+b²),(a²+b),√(a+b),Easy
+What is the surface area of a sphere?,4πr²,2πr²,3πr²,8πr²,Easy
+What is the formula for the volume of a cone (or pyramid)?,v = 1/3(b x h),v = 1/3(b / h),V = 1/4(b x h),V = 1/2(b x h),Easy
+"In Newton’s second law of motion, Force equals what?",F = ma,F = a/m,F = ac,F = mc,Easy
+What is the formula for the volume of a sphere?,v = 4/3 (πr³),V =  (πr³),V = 4(πr³),V = 3(πr³),Easy
+"According to Einstein’s theory of relativity, what does c equal?",c = √(E/m).,c = √(E/a).,c = √(a/m).,c = √(E*m).,Easy
+What is the volume of a cylinder?,v = πr²h,v = πrh,v = 4πr²h,v = 5πr²h,Easy
+What is the sum of 130+125+191?,446,452,485,468,Medium
+"If we minus 712 from 1500, how much do we get?",788,458,789,745,Medium
+50 times of 8 is equal to:,400,420,485,698,Medium
+110 divided by 10 is:,11,12,10,9,Medium
+20+(90÷2) is equal to:,65,64,60,70,Medium
+The product of 82 and 5 is:,410,420,400,500,Medium
+"Find the missing terms in multiple of 3: 3, 6, 9, __, 15",11,10,9,8,Medium
+Solve 24÷8+2.,5,4,6,8,Medium
+Solve: 300 – (150×2),0,1,2,3,Medium
+The product of 121 x 0 x 200 x 25 is,0,121,200,25,Medium
+What is the next prime number after 5?,7,11,13,17,Medium
+The circumference of the circle is also sometimes called:,Permiter of the circle,Area of Circle,Arc of Circle,Segment of Circle,Medium
+90 – 35 is equal to:,55,54,53,50,Medium
+72 divided by 8 is equal to:,9,4,9,5,Medium
+How many sides does a decagon have?,10,11,8,5,Medium
+9 x 7 is equal to:,63,60,64,72,Medium
+Is triangle,2D Shape,3D Shape,4D Shape,1D Shape,Medium
+An equilateral triangle has _ of its sides equal,3,2,1,0,Medium
+8 raised to the power 0 is equal to:,1,8,0,16,Medium
+The largest 4 digit number is:,9999,1999,2599,6877,Medium
+The smallest 4-digit number is:,1000,1200,5644,7855,Medium
+The square of 8 is equal to: ,64,16,32,80,Medium
+The square root of 25 is ,5,4,6,None of the above,Medium
+64 is a perfect square of,8,7,9,10,Medium
+Cube of 5 is equal to:,125,124,189,120,Medium
+Cube root of 1331 is:,11,12,10,13,Medium
+27 is a perfect cube of,3,4,5,6,Medium
+A square has all its angles equal to:,90,180,270,360,Medium
+The area of rectangle is equal to:,L x B,L / B,2 x L x B,4 x L x B,Medium
+"If a is the side of cube, then the volume of the cube is:",a x a x a,a x a,a / a,a x 2,Medium
+A regular polygon has all its sides:,Equal,Propotion,Not Equal,Not in proportion,Medium
+"If 16 = 11, 25 = 12, 36 = 15, then 49 = ?",20,14,19,17,Hard
+"Which number is missing? 1, 9, 25, 49, (?)",81,121,16,169,Hard
+"From the alternatives, select the set which is most alike the set (23, 29, 31).","(41, 43, 47)","(41, 43, 45)","(41, 42, 47)","(40, 43, 47)",Hard
+(9321 + 5406 + 1001) ÷ (498 + 929 + 660) = ……… .,7.5,3.5,4.5,16.5,Hard
+561204 × 58 = ? × 55555,586,606,646,716,Hard
+"If 6 is 50% of a number, what is the number?",12,11,10,9,Hard
+Area of a parallelogram whose base is 9 cm and height is 4 cm is ……….. square cm.,36,9,4,13,Hard
+Andy read 4/5 th of a story book which has 100 pages. How many pages of the book is not yet read by Andy?,20,40,60,80,Hard
+The quotient in a division sum is 403. The divisor is 100 and the remainder is 58. The dividend is ……… .,40358,40458,34058,43058,Hard
+Which least number should be added to 2600 to make it a perfect square?,1,3,39,5,Hard
+A long rope has to be cut to make 23 small pieces. If it is double folded to start with how many times does it need to be cut?,11,9,23,12,Hard
+Ruby’s height is 5’2”. Ana is taller than Ruby but she is not taller than Pamela. Pamela is shorter than her cousin Ron but she is not shorter than Ruby. Who is the tallest in the group?,Ron,Ana,Pamela,Ruby,Hard
+"A river flows west to east and on the way turns left and go in a semi-circle round a hillock, and then turns left at right-angles. In what direction is the river finally flowing?",East,North,South,West,Hard
+"A clock seen through a mirror, shows quarter past three. What is the correct time shown by the clock?",8.45,9.15,3.15,9.45,Hard
+A clock seen through a mirror shows 8 o’clock. What is the correct time?,4,8,12.2,12.4,Hard
+"Tom was not at school on Saturday last. He was first absent for four days before that. Today is Monday, the 31st of October. When was Tom first absent? Give the day and date.","Tuesday, Oct. 25","Monday, Oct. 24","Wednesday, Oct. 26","Thursday, Oct. 27",Hard
+"If the day tomorrow is Sunday, what was it yesterday?",Friday,Wednesday,Saturday,Sunday,Hard
+A clock shows the time as 12.20. What is the angle the hour hand makes with the minutes hand?,110,120,130,140,Hard
+What is the angle the hour hand of a clock makes with the minute hand when the time is 15.40?,130 and 75,110,120,125,Hard
+78 ÷ 5 ÷ 0.5 = ?,31.2,15.6,20.4,7.78,Hard
+"If ∆ means multiply the first number by second, then (3 ∆ 5) ∆ 2 = ?",30,50,20,10,Hard
+"Nil is 23 years 1 month old, Shelly is 18 years 7 months old and Ben is as much older than Shelly is younger than Nil. The age of Ben is ……. .",20 years 10 months.,30 years 10 months.,50 years 10 months.,20 years 8 months.,Hard
+If the number X 78 Y is divisible by 55 then value of X and Y are:,"4, 5","8, 5","4, 7","4, 8",Hard
+"Fill in the blanks; 4, 6, 12, 14, 28, 30, (?)",60,62,34,32,Hard
+"Three bells toll at the intervals of 10, 15 and 24 minutes. All the three begin to toll together at 8 A.M. At what time they will again toll together?",10,10.45,9.25,8.5,Hard
+What temperature at Celsius scale is equal to 300°K.,27,300,30,45,Hard
+"In your bookshelf, you have five favorite books. If you decide to arrange these five books in every possible combination and moved just one book in every half a minute. How much time it will take you to arrange?",1 hours,4 hours,5 hours,8 hours,Hard
+Each edge of a cube is increased by 50%. What will be the percent increase in its volume?,237.5,133.25,150,50,Hard
+The diagonals of a rhombus are 30 cm and 40 cm long. Find its side.,25,120,200,100,Hard
+The number which is neither prime nor composite is ……. .,1,0,2,3,Hard
+"The least number of five digits which is completely divisible by 39, is ………. .",10023,10014,10062,10021,Hard
+"If ‘+’ means ‘×’, ‘-‘ means ‘+’, ‘×’ means ‘÷’ and ‘÷’ means ‘-‘ then find the value of; 6 – 9 + 8 × 3 ÷ 20 = ……. .",10,6,-2,12,Hard
+What is 121 times 11?,1331,1133,1313,3131,Hard
+"A car covers a distance of 200km in 2 hours 40 minutes, whereas a jeep covers the same distance in 2 hours. What is the ratio of their speed?",3:4,3:5,4:5,5:6,Hard
+10001 – 101 = ?,9990,9900,990,1010,Hard
+A number is greater than 3 but less than 8. Also the number is greater than 6 but less than 10. What is the number?,7,5,6,8,Hard
+"In the following series a wrong number is given. Find out that number. 4, 5, 10, 18, 34, 59, 95",10,5,18,34,Hard
+"A clock reads 4:30. If the minute hand points East, in what direction will the hour hand point?",North East,North,North West,South,Hard
+The sum of squares of two numbers is 80 and the square of difference between the two numbers is 36. Find the product of two numbers.,22,11,33,26,Hard
+The value of 1.07 × 65 + 1.07 × 26 + 1.07 × 9 is,,107,10.7,10.8,Hard
+0.05 × 0.09 × 5 = ………. .,0.0225,0.025,0.225,0.005,Hard
+(4)^2 + (3)^2 = (……..)^2.,5,14,25,7,Hard
+18/√…….. = 2,81,36,18,6,Hard
+90112 – 3123 = ……….. .,86989,87099,93235,96989,Hard
+What should come in place of question mark (?) in the following question? 4 : 13 :: 64 : …….. .,208,198,168,228,Hard
+Which number should come in place of both question mark (?)/81 = 144/(?),108,972,1296,11664,Hard
+What percentage should be added to 40 to make it 50?,25,15,75,40,Hard
+Which is the smallest fraction among the following?,2/3,6/7,6/5,3/4,Hard
+4.16 × 0.75 = ………… .,3.12,0.0312,0.312,31.2,Hard
+"If 5 boys take 7 hours to pack 35 cartoons, then how many boys can pack 65 cartoons in 3 hours?",None of the above,26,39,45,Hard

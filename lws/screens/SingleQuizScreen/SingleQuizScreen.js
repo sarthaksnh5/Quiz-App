@@ -37,10 +37,13 @@ const SingleQuizScreen = ({navigation, route}) => {
           const {score, date} = JSON.parse(await getAsyncData(QuizConstant));
           const currentDate = new Date().getDate();
           if (date == currentDate) {
-            if (score <= 1 && date == currentDate) {
-              navigation.navigate('Quiz', {userSubject});
+            if (score <= 3 && date == currentDate) {
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Quiz', params: {userSubject, difficulty}}],
+              });
             } else {
-              setContent('Only 2 quizzes allowed per day');
+              setContent('Only 4 quizzes allowed per day');
               setShowSnack(true);
             }
           } else {
@@ -48,7 +51,10 @@ const SingleQuizScreen = ({navigation, route}) => {
               QuizConstant,
               JSON.stringify({score: 0, date: currentDate}),
             );
-            navigation.navigate('Quiz', {userSubject, difficulty});
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Quiz', params: {userSubject, difficulty}}],
+            });
           }
         }}
       />

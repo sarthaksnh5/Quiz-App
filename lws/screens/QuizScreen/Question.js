@@ -1,16 +1,22 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
 import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Animated,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  dangerText,
   greenText,
   greyColor,
-  lightPink,
   lightPurple,
-  primaryColor,
   skipColor,
   textColor,
 } from '../../constants/colors';
 import {font_Bold, font_ExtraBold} from '../../constants/fonts';
-import {RadioButton} from 'react-native-paper';
 
 const Question = ({
   questions,
@@ -19,110 +25,95 @@ const Question = ({
   setSelected,
   onPress,
   handleSkip,
+  pressed,
+  setPressed,
+  fadeAnim,
 }) => {
+  const [answersList, setAnswersList] = useState([]);
+
+  const renderItem = ({item}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelected(item.answer);
+          setPressed(true);
+          onPress(item.answer);
+        }}
+        disabled={pressed}
+        style={[
+          styles.option,
+          item.correct == 0 && pressed && styles.incorrect_answer,
+          item.correct == 1 && pressed && styles.correct_answer,
+        ]}>
+        <View style={styles.textContainer}>
+          <Text style={styles.optionText}>{item.answer}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  useEffect(() => {
+    var randomOption = Math.floor(Math.random() * 3) + 0;
+    var pos = 0;
+    var temp = [];
+
+    for (var i = 0; i < 4; i++) {
+      if (i == randomOption) {
+        temp.push({
+          id: i,
+          answer: questions[questionIndex].correct_answer,
+          correct: 1,
+        });
+      } else {
+        temp.push({
+          id: i,
+          answer: questions[questionIndex].incorrect_answer[pos],
+          correct: 0,
+        });
+        pos = pos + 1;
+      }
+    }
+    setAnswersList(temp);
+  }, [questionIndex]);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.questionCountContainer}>
-        <Text style={styles.questionCount}>
-          Question {questionIndex + 1} of 10
-        </Text>
-      </View>
-      <View style={styles.questionContainer}>
-        <Text style={styles.question}>{questions[questionIndex].question}</Text>
-      </View>
-      <View style={styles.optionsContainer}>
-        <TouchableOpacity
-          onPress={() => setSelected('1')}
-          style={[
-            styles.option,
-            selected === '1' && styles.optionText_Selected,
-          ]}>
-          <View style={styles.textContainer}>
-            <Text style={styles.optionText}>
-              {questions[questionIndex].correct_answer}
-            </Text>
-          </View>
-          <View style={styles.radioContainer}>
-            <RadioButton
-              color={primaryColor}
-              value={'1'}
-              status={selected === '1' ? 'checked' : 'unchecked'}
-              onPress={() => setSelected('1')}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setSelected('2')}
-          style={[
-            styles.option,
-            selected === '2' && styles.optionText_Selected,
-          ]}>
-          <View style={styles.textContainer}>
-            <Text style={styles.optionText}>
-              {questions[questionIndex].incorrect_answer['0']}
-            </Text>
-          </View>
-          <View style={styles.radioContainer}>
-            <RadioButton
-              color={primaryColor}
-              value={'2'}
-              status={selected === '2' ? 'checked' : 'unchecked'}
-              onPress={() => setSelected('2')}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setSelected('3')}
-          style={[
-            styles.option,
-            selected === '3' && styles.optionText_Selected,
-          ]}>
-          <View style={styles.textContainer}>
-            <Text style={styles.optionText}>
-              {questions[questionIndex].incorrect_answer['1']}
-            </Text>
-          </View>
-          <View style={styles.radioContainer}>
-            <RadioButton
-              color={primaryColor}
-              value={'3'}
-              status={selected === '3' ? 'checked' : 'unchecked'}
-              onPress={() => setSelected('3')}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setSelected('4')}
-          style={[
-            styles.option,
-            selected === '4' && styles.optionText_Selected,
-          ]}>
-          <View style={styles.textContainer}>
-            <Text style={styles.optionText}>
-              {questions[questionIndex].incorrect_answer['2']}
-            </Text>
-          </View>
-          <View style={styles.radioContainer}>
-            <RadioButton
-              color={primaryColor}
-              value={'4'}
-              status={selected === '4' ? 'checked' : 'unchecked'}
-              onPress={() => setSelected('4')}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.submitskipContainer}>
-        <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-          <Text style={styles.btnText}>Skip</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onPress} style={styles.nextButton}>
-          <Text style={styles.btnText}>
-            {questionIndex != 9 ? 'Next' : 'Submit'}
+    <ScrollView
+      contentContainerStyle={styles.container}
+      style={{width: '100%'}}>
+      <Animated.View style={{opacity: fadeAnim}}>
+        <View style={styles.questionCountContainer}>
+          <Text style={styles.questionCount}>
+            Question {questionIndex + 1} of 10
           </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        </View>
+        <View style={styles.questionContainer}>
+          <Text style={styles.question}>
+            {questions[questionIndex].question}
+          </Text>
+        </View>
+        {/* <View style={styles.optionsContainer}> */}
+        <FlatList
+          data={answersList}
+          renderItem={renderItem}
+          key={item => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.optionsContainer}
+        />
+        {/* </View> */}
+        <View style={styles.submitskipContainer}>
+          {questionIndex != 9 && (
+            <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
+              <Text style={styles.btnText}>Skip</Text>
+            </TouchableOpacity>
+          )}
+          {questionIndex == 9 && (
+            <TouchableOpacity onPress={onPress} style={styles.nextButton}>
+              <Text style={styles.btnText}>Submit</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </Animated.View>
+    </ScrollView>
   );
 };
 
@@ -173,9 +164,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: font_Bold,
     fontSize: 18,
+    textTransform: 'capitalize',
   },
-  optionText_Selected: {
-    backgroundColor: lightPink,
+  correct_answer: {
+    backgroundColor: greenText,
+  },
+  incorrect_answer: {
+    backgroundColor: dangerText,
   },
   submitskipContainer: {
     width: '100%',
@@ -206,9 +201,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   textContainer: {
-    width: '85%',
-  },
-  radioContainer: {
-    width: '15%',
+    width: '100%',
   },
 });

@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import Background from '../../component/Background';
 import Header from '../../component/Header';
@@ -53,10 +53,10 @@ const RegisterScreen = ({navigation}) => {
     ) {
       if (password === password2) {
         if (mobile.length === 10) {
-          if (email.includes('@')) {
+          if (email.includes('@') && email.includes('.')) {
             setLoading(true);
             const data = {
-              email: email,
+              email: email.toLowerCase(),
               first_name: username,
               last_name: username,
               password: password,
@@ -64,10 +64,9 @@ const RegisterScreen = ({navigation}) => {
               mobile: mobile,
               types: 'Student',
               address: address,
-              yourClass: yourClass,
+              yourClass: '8',
             };
             const hitLink = `${url}user/register`;
-            
 
             try {
               const resp = await fetch(hitLink, {
@@ -86,18 +85,23 @@ const RegisterScreen = ({navigation}) => {
                   navigation.replace('Login');
                 }, 1500);
               } else {
+
                 const response = await resp.json();
+
                 if ('email' in response) {
-                  setContent('Email ID Already Registered');
-                  setShowSnack(true);
+                  setContent(`Email: This Email ID already registered`);
+                } else if ('password' in response) {
+                  setContent(`Password: ${response.password[0]}`);
+                } else if ('mobile' in response) {
+                  setContent("Mobile Number is already registered");
                 } else {
-                  setContent('Server Error! Please Try Again later.');
-                  setShowSnack(true);
+                  setContent('Server Error');
                 }
+                setShowSnack(true);
               }
             } catch (e) {
               console.log(e);
-              setContent('Server Error! Please Try Again later.');
+              setContent('Network Error please try again later');
               setShowSnack(true);
             }
             setLoading(false);
@@ -156,19 +160,31 @@ const RegisterScreen = ({navigation}) => {
             keyboardType="numeric"
           />
 
-          <Dropdown
-            inputs={classes}
-            value={yourClass}
-            setValue={setYourClass}
-            icon={'book'}
-          />
-
           <TextArea
             icon={'map-marker'}
             label={'Address'}
             value={address}
             onChangeText={setAddress}
           />
+
+          <View style={styles.infoContainer}>
+            <View style={styles.countContainer}>
+              <Text>1. </Text>
+              <Text>Password should not include your name</Text>
+            </View>
+            <View style={styles.countContainer}>
+              <Text>2. </Text>
+              <Text>Password should be 8 characters long</Text>
+            </View>
+            <View style={styles.countContainer}>
+              <Text>3. </Text>
+              <Text>Password should include numbers</Text>
+            </View>
+            <View style={styles.countContainer}>
+              <Text>4. </Text>
+              <Text>Password should not be too common</Text>
+            </View>
+          </View>
 
           <InputBox
             label={'Password'}
@@ -222,5 +238,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     alignSelf: 'center',
+  },
+  infoContainer: {
+    width: '90%',
+    padding: 5,
+  },
+  countContainer: {
+    flexDirection: 'row',
   },
 });

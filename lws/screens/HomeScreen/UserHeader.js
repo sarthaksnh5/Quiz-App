@@ -1,13 +1,14 @@
 import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
-import {lightPurple} from '../../constants/colors';
+import {lightPurple, primaryColor} from '../../constants/colors';
 import {font_Bold, font_ExtraBold} from '../../constants/fonts';
 import {url} from '../../constants/constants';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const UserHeader = ({username, uri}) => {
   const [loading, setLoading] = useState(true);
-
+  
   const getIcon = () => {
     const date = new Date();
     var icon = 'sun';
@@ -37,33 +38,33 @@ const UserHeader = ({username, uri}) => {
       </View>
       <View style={styles.imageContainer}>
         <View style={styles.imageBanner}>
-          <Image
-            onLoadEnd={() => {
-              setLoading(false);
-            }}
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{width: 1, height: 1}}
-            source={{
-              uri:
-                uri == null
-                  ? 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg'
-                  : `${uri}`,
-            }}
-            resizeMode={'contain'}
-          />
-          {loading ? (
-            <ActivityIndicator color={'white'} size={'small'} />
+          {uri == null ? (
+            <AntDesign name="user" size={24} color={'white'} />
           ) : (
-            <Image
-              style={styles.image}
-              source={{
-                uri:
-                  uri == null
-                    ? 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg'
-                    : `${uri}`,
-              }}
-              resizeMode={'contain'}
-            />
+            <>
+              <Image
+                onLoadEnd={() => {
+                  setLoading(false);
+                }}
+                // eslint-disable-next-line react-native/no-inline-styles
+                style={{width: 1, height: 1}}
+                source={{
+                  uri: `${url.slice(0, -1)}${uri}`,
+                }}
+                resizeMode={'contain'}
+              />
+              {loading ? (
+                <ActivityIndicator color={'white'} size={'small'} />
+              ) : (
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: `${url.slice(0, -1)}${uri}`
+                  }}
+                  resizeMode={'cover'}
+                />
+              )}
+            </>
           )}
         </View>
       </View>
@@ -98,12 +99,12 @@ const styles = StyleSheet.create({
   text: {
     marginHorizontal: 10,
     color: lightPurple,
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: font_Bold,
   },
   userText: {
     color: 'white',
-    fontSize: 28,
+    fontSize: 25,
     fontFamily: font_ExtraBold,
   },
   imageBanner: {

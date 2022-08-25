@@ -51,18 +51,6 @@ class RegisterQuizSerializer(serializers.ModelSerializer):
         fields = ('user', 'category', 'difficulty', 'correct_answers',
                   'incorrect_answers', 'skip_answers', 'points')        
 
-    def validate(self, attrs):        
-        correct = int(attrs['correct_answers'])
-        incorrect = int(attrs['incorrect_answers'])
-        skip = int(attrs['skip_answers'])
-        
-        if (correct + incorrect + skip) != 10:
-            raise serializers.ValidationError(
-                {"questions": "Count of questions are not equal to 10"}
-            )
-
-        return attrs
-
     def create(self, validated_data):        
         try:
             category = validated_data['category']

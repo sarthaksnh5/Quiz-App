@@ -1,10 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {greyColor, primaryColor} from '../../constants/colors';
-import {font_ExtraBold, font_Regular} from '../../constants/fonts';
+import { url } from '../../constants/constants';
 import InputBox from '../../component/InputBox';
 import Button from '../../component/Button';
-import {appURL} from '../../constants/AppConstants';
+import { font_ExtraBold } from '../../constants/fonts';
+import { primaryColor } from '../../constants/colors';
 
 const PasswordToken = ({setDanger, setContent, setShowSnack, donePress}) => {
   const [token, setToken] = useState('');
@@ -17,13 +17,13 @@ const PasswordToken = ({setDanger, setContent, setShowSnack, donePress}) => {
     if (token.length > 0 && password.length > 0) {
       setIsLoading(true);
       try {
-        const url = `${appURL}api-reset-password/confirm/`;
+        const hitURL = `${url}api-reset-password/confirm/`;
         const data = {
           token,
           password,
         };
 
-        const resp = await fetch(url, {
+        const resp = await fetch(hitURL, {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {

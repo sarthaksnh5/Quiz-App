@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Background from '../../component/Background';
-import SnakbarComponent from '../../component/SnackbarComponent';
+import SnackBarComponent from '../../component/SnackBarComponent';
 import BackHeader from './BackHeader';
 import EmailResetPassword from './EmailResetPassword';
 import PasswordToken from './PasswordToken';
@@ -18,7 +18,9 @@ const ResetPasswordScreen = ({navigation}) => {
           setDanger={setDanger}
           setContent={setContent}
           setShowSnack={setShowSnack}
-          donePress={() => {navigation.replace('Login')}}
+          donePress={() => {
+            navigation.replace('Login');
+          }}
         />
       ) : (
         <>
@@ -32,11 +34,10 @@ const ResetPasswordScreen = ({navigation}) => {
         </>
       )}
 
-      <SnakbarComponent
+      <SnackBarComponent
         visible={showSnack}
         setVisible={setShowSnack}
         text={content}
-        danger={danger}
       />
     </Background>
   );

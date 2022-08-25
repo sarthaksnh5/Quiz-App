@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {TextInput as Input} from 'react-native-paper';
-import {primaryColor, dangerText, textColor} from '../constants/colors';
+import {primaryColor, dangerText, textColor, greyColor} from '../constants/colors';
 
 const TextArea = ({
   errorText,
@@ -21,6 +21,9 @@ const TextArea = ({
           }}
           name={secureTextEntry ? 'eye-off' : 'eye'}
           color={primaryColor}
+          outlineColor={primaryColor}
+          // placeholderTextColor={greyColor}
+          theme={{colors: {text: textColor, placeholder: greyColor}}}
         />
       );
     } else {
@@ -37,6 +40,10 @@ const TextArea = ({
         activeOutlineColor={primaryColor}
         underlineColor="transparent"
         mode="outlined"
+        outlineColor={primaryColor}
+        scrollEnabled={false}
+        // placeholderTextColor={greyColor}
+        theme={{colors: {text: textColor, placeholder: greyColor}}}
         left={
           <Input.Icon style={styles.icon} name={icon} color={primaryColor} />
         }
@@ -68,6 +75,9 @@ const styles = StyleSheet.create({
     color: primaryColor,
     width: '100%',
     height: 100,
+    fontSize: 14,
+    lineHeight: 14,
+    padding: 0,
   },
   description: {
     fontSize: 13,

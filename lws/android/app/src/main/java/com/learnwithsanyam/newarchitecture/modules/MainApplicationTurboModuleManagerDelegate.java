@@ -1,4 +1,4 @@
-package com.lws.newarchitecture.modules;
+package com.learnwithsanyam.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

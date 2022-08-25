@@ -7,9 +7,12 @@ import {
 import Background from '../../component/Background';
 import FullScreenLoading from '../../component/FullScreenLoading';
 import SnackBarComponent from '../../component/SnackBarComponent';
-import {QuizConstant, StoreUser, url} from '../../constants/constants';
+import {MonthConstant, QuizConstant, StoreUser, url} from '../../constants/constants';
 import Question from './Question';
 import Timer from './Timer';
+import Sound from 'react-native-sound';
+import buzzer from '../../assets/sounds/buzzer.mp3';
+import {Animated, Easing} from 'react-native';
 
 const QuizScreen = ({navigation, route}) => {
   const [start, setStart] = useState(false);
@@ -24,11 +27,34 @@ const QuizScreen = ({navigation, route}) => {
   const [skip, setSkip] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [currentTime, setCurrentTime] = useState(20);
+  const [special, setSpecial] = useState(false);
+  const [pressed, setPressed] = useState(false);
+  const timeout = 20;
+  const [fadeAnim] = useState(new Animated.Value(1));
+
+  var ding = new Sound(buzzer, null, error => {
+    if (error) {
+      console.log('Unable to load the buzzer sound');
+      return;
+    }
+  });
+
+  ding.setVolume(1);
 
   const getQuizQuestions = async () => {
+    Sound.setCategory('Playback');
+
     try {
       const {userSubject, difficulty} = route.params;
-      const questionsURL = `${url}questions/question?category=${userSubject}&difficulty=${difficulty}`;
+      var questionsURL = '';
+      if (difficulty == 'special') {
+        setSpecial(true);
+        questionsURL = `${url}questions/question?filter=special`;
+      } else {
+        setSpecial(false);
+        questionsURL = `${url}questions/question?category=${userSubject}&difficulty=${difficulty}`;
+      }
+
       const {token, email} = JSON.parse(await getAsyncData(StoreUser));
       const headers = {
         Authorization: `TOKEN ${token}`,
@@ -41,14 +67,17 @@ const QuizScreen = ({navigation, route}) => {
 
       if (resp.status == 200) {
         const response = await resp.json();
-
-        setQuestions(response);
+        // console.log(response);
+        if (response.length > 0) setQuestions(response);
+        else {
+          alert('No questions in this category');
+          navigation.replace('Tab');
+        }
       } else {
-        setContent('Server Error! Please Try again later');
-        setShowSnack(true);
-        setTimeout(() => {
-          navigation.goBack();
-        }, 2000);
+        const response = await resp.json();
+        console.log(response);
+        alert('Server Error');
+        navigation.replace('Tab');
       }
     } catch (e) {
       console.log(e);
@@ -62,6 +91,7 @@ const QuizScreen = ({navigation, route}) => {
       getQuizQuestions();
 
       return () => {
+        ding.release();
         setIsLoading(true);
       };
     }, []),
@@ -73,8 +103,18 @@ const QuizScreen = ({navigation, route}) => {
 
   const handleSubmit = async (ucorrect, uincorrect, uskip) => {
     setIsLoading(true);
-    const {userSubject, difficulty} = route.params;
+    var {userSubject, difficulty} = route.params;
     const {token, email} = JSON.parse(await getAsyncData(StoreUser));
+    var points;
+    if (special) {
+      points = parseInt(correct) * 10;
+      difficulty = 'LWS Genius';
+      userSubject = 'LWS Genius';
+    }
+    else {
+      points = correct;
+    }
+
     const data = {
       user: email,
       category: userSubject,
@@ -82,8 +122,9 @@ const QuizScreen = ({navigation, route}) => {
       correct_answers: ucorrect,
       incorrect_answers: uincorrect,
       skip_answers: uskip,
-      points: ucorrect,
+      points: points,
     };
+
     const registerQuizUrl = `${url}questions/registerQuiz`;
 
     const headers = {
@@ -91,25 +132,37 @@ const QuizScreen = ({navigation, route}) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     };
+
     const response = await fetch(registerQuizUrl, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(data),
     });
+
     if (response.status == 201) {
       const {score, date} = JSON.parse(await getAsyncData(QuizConstant));
-      storeAsycnData(
-        QuizConstant,
-        JSON.stringify({score: score + 1, date: date}),
-      );
-      navigation.navigate('Result', {answers, ucorrect, uincorrect, uskip});
+      if (special) {
+        const curr = new Date().getMonth();
+        var specialdata = {
+          month: curr,
+          count: 1,
+        };
+        await storeAsycnData(MonthConstant, JSON.stringify(specialdata));
+      } else {
+        storeAsycnData(
+          QuizConstant,
+          JSON.stringify({score: score + 1, date: date}),
+        );
+      }
+      navigation.replace('Result', {answers, ucorrect, uincorrect, uskip});
     } else {
+      console.log(await response.json());
       alert('Server Error! Please try again later');
-      navigation.goBack();
+      navigation.replace('Tab');
     }
   };
 
-  const handleNext = async () => {
+  const handleNext = async answer => {
     try {
       if (questionIndex == 9) {
         setStart(false);
@@ -117,41 +170,71 @@ const QuizScreen = ({navigation, route}) => {
         var uincorrect = incorrect;
         var uskip = skip;
 
-        if (selected == 1) {
+        if (answer == questions[questionIndex].correct_answer) {
           setAnswers([...answers, 1]);
           ucorrect += 1;
-        } else if (selected == 0) {
-          setAnswers([...answers, 0]);
-          uincorrect += 1;
-        } else {
+        } else if (answer == 0) {
           setAnswers([...answers, 0]);
           uskip += 1;
+        } else {
+          setAnswers([...answers, 0]);
+          uincorrect += 1;
         }
         await handleSubmit(ucorrect, uincorrect, uskip);
       } else {
-        if (selected == 1) {
+        if (answer == questions[questionIndex].correct_answer) {
           setCorrect(correct + 1);
           setAnswers([...answers, 1]);
-        } else if (selected == 0) {
+        } else if (answer == 0) {
           setSkip(skip + 1);
           setAnswers([...answers, 0]);
         } else {
+          ding.play(success => {
+            if (success) {
+              console.log('Playing');
+            } else {
+              console.log('Error in playing');
+            }
+          });
           setIncorrect(incorrect + 1);
           setAnswers([...answers, 0]);
         }
+
         setSelected('0');
-        setQuestionIndex(questionIndex + 1);
+        // setTimeout(() => {
+        //   setPressed(false);
+        // }, 1000);
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 1000,
+          easing: Easing.back(),
+          useNativeDriver: true,
+        }).start(() => {
+          setPressed(false);
+        });
+        setTimeout(() => {
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1000,
+            easing: Easing.back(),
+            useNativeDriver: true,
+          }).start(setQuestionIndex(questionIndex + 1));
+          setCurrentTime(timeout);
+        }, 2000);
       }
     } catch (e) {
-      navigation.goBack();
+      // navigation.replace('Tab');
       console.log(e);
     }
-
-    setCurrentTime(20);
   };
 
   const handleSkip = () => {
-    setQuestionIndex(questionIndex + 1);
+    if (questionIndex != 9) {
+      // setCurrentTime(timeout);
+      handleNext('0');
+    } else {
+      handleNext('0');
+    }
   };
 
   return (
@@ -163,6 +246,7 @@ const QuizScreen = ({navigation, route}) => {
         setCurrentTime={setCurrentTime}
         questionIndex={questionIndex}
         setQuestionIndex={setQuestionIndex}
+        timeout={timeout}
         handleNext={handleNext}
       />
       <Question
@@ -172,6 +256,9 @@ const QuizScreen = ({navigation, route}) => {
         setSelected={setSelected}
         onPress={handleNext}
         handleSkip={handleSkip}
+        pressed={pressed}
+        setPressed={setPressed}
+        fadeAnim={fadeAnim}
       />
       <SnackBarComponent
         visible={showSnack}

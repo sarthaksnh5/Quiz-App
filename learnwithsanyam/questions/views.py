@@ -1,14 +1,16 @@
+import random
 from django.contrib.auth import get_user_model
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-from rest_framework import status          
+from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.response import Response 
+from rest_framework.response import Response
 from questions.models import LeaderBoard, Questions, Quiz
 from questions.serializers import GetLeaderboardSerializer, GetQuestionSerializer, GetQuizSerializer, RegisterQuestionSerializer, RegisterQuizSerializer
 
 User = get_user_model()
+
 
 class QuestionDetailAPI(APIView):
     authentication_classes = (TokenAuthentication,)
@@ -16,10 +18,23 @@ class QuestionDetailAPI(APIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            category = request.GET['category']
-            difficulty = request.GET['difficulty']
-            questions = Questions.objects.filter(
-                category=category, difficulty=difficulty).order_by('?')[:10]
+            if 'filter' in request.GET:
+                filter = request.GET['filter']
+                if filter == 'special':
+                    questions = Questions.objects.filter(difficulty='special')
+                    endNum = len(questions) - 10
+                    ranI = random.randint(0, endNum)
+                    questions = questions[ranI:ranI + 10]
+
+            else:
+                category = request.GET['category']
+                difficulty = request.GET['difficulty']
+                questions = Questions.objects.filter(
+                    category=category, difficulty=difficulty)
+                endNum = len(questions) - 10
+                ranI = random.randint(0, endNum)
+                questions = questions[ranI:ranI + 10]
+
             serializer = GetQuestionSerializer(questions, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
@@ -28,9 +43,12 @@ class QuestionDetailAPI(APIView):
 
     def delete(self, request, *args, **kwargs):
         try:
-            id = request.GET['id']
-            question = Questions.objects.get(id=id)
-            question.delete()
+            #id = request.GET['id']
+            # question = Questions.objects.get(id=id)
+            # question.delete()
+            questions = Questions.objects.filter(category='Social')
+            for question in questions:
+                question.delete()
             return Response(status=status.HTTP_200_OK)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
@@ -51,7 +69,8 @@ class QuizDetailAPI(APIView):
             if request.GET['filter'] == 'user':
                 try:
                     user = User.objects.get(email=request.GET['email'])
-                    quizzes = Quiz.objects.filter(user=user).order_by('-on_date')
+                    quizzes = Quiz.objects.filter(
+                        user=user).order_by('-on_date')
                     if len(quizzes) > 0:
                         serializer = GetQuizSerializer(quizzes[0])
                         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -67,20 +86,21 @@ class QuizDetailAPI(APIView):
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
             if request.GET['filter'] == 'quizes':
-                user = User.objects.get(email=request.GET['email'])                
-                quizzes = Quiz.objects.filter(user=user).order_by('-on_date')                                
+                user = User.objects.get(email=request.GET['email'])
+                quizzes = Quiz.objects.filter(user=user).order_by('-on_date')
                 serializer = GetQuizSerializer(quizzes, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
             if request.GET['filter'] == 'rank':
                 user = User.objects.get(email=request.GET['email'])
-                leader = LeaderBoard.objects.get(user=user)
-                rank = LeaderBoard.objects.filter(points__gt=leader.points).count() + 1
+                leader = LeaderBoard.objects.get(user=user, category='Science', difficulty='Easy')
+                rank = LeaderBoard.objects.filter(
+                    points__gt=leader.points).count() + 1
                 temp = {
                     'rank': rank,
                     'points': leader.points
                 }
-                return Response(temp, status.HTTP_200_OK)   
+                return Response(temp, status.HTTP_200_OK)
 
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
@@ -100,7 +120,8 @@ class LeaderboardDetailAPI(APIView):
         try:
             category = request.GET['category']
             difficulty = request.GET['difficulty']
-            leaderboard = LeaderBoard.objects.filter(category=category, difficulty=difficulty).order_by('-points')
+            leaderboard = LeaderBoard.objects.filter(
+                category=category, difficulty=difficulty).order_by('-points')
             serializer = GetLeaderboardSerializer(leaderboard, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:

@@ -35,8 +35,8 @@ const Quizzes = ({press}) => {
     },
     {
       id: 3,
-      title: 'Social Science',
-      tag: 'SST',
+      title: 'General Knowledge',
+      tag: 'General',
       navigate: '',
       icon: 'map',
     },

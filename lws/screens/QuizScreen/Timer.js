@@ -10,6 +10,7 @@ const Timer = ({
   questionIndex,
   setQuestionIndex,
   handleNext,
+  timeout
 }) => {
   useEffect(() => {
     if (start) {
@@ -19,10 +20,10 @@ const Timer = ({
 
       if (currentTime === 0) {
         if (questionIndex != 9) {
-          setQuestionIndex(questionIndex + 1);
-          setCurrentTime(20);
+          handleNext('0')
+          setCurrentTime(timeout);
         } else {
-          handleNext();
+          handleNext('0');
         }
       }
       return () => clearInterval(timer);
@@ -33,7 +34,7 @@ const Timer = ({
   return (
     <View style={styles.container}>
       <CircularPercent
-        progress={currentTime / 20}
+        progress={currentTime / timeout}
         radius={80}
         timeLeft={currentTime}
         result={false}

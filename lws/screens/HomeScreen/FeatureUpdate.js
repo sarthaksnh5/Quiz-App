@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {lightPurple, secondaryColor} from '../../constants/colors';
 import IconButton from '../../component/IconButton';
 import {font_Bold} from '../../constants/fonts';
 
-const FeatureUpdate = () => {
+const FeatureUpdate = ({onPress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
@@ -15,9 +15,9 @@ const FeatureUpdate = () => {
           Take part in challenges to win LWS Genius Title
         </Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
         <IconButton text={'Take Part'} icon="" mode="outlined" />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

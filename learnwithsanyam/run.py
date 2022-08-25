@@ -1,12 +1,12 @@
 import json
 import requests
-
+# scp root@82.180.173.222:learnwithsanyam/mydatabase /home/sarthak/Downloads/mydatabase.sqlite
 # API = "https://opentdb.com/api.php?amount=50&category=9&difficulty=medium&type=multiple"
 API = "https://the-trivia-api.com/api/questions?categories=science&limit=20&difficulty=hard"
-# API = "https://the-trivia-api.com/api/questions?categories=general_knowledge,history,geography&limit=20&region=IN&difficulty=easy"
-URL = "http://192.168.1.8:8001/questions/registerQuestion"
+# API = "https://the-trivia-api.com/api/questions?categories=general_knowledge,history,geography&limit=20&region=IN&difficulty=hard"
+URL = "http://82.180.173.222/questions/registerQuestion"
 Headers = {
-    "Authorization": "TOKEN 4f1194898a6d1ba57651769d23e366fb63589d88"
+    "Authorization": "TOKEN 0c311bcbfe491e8710640a10af858886cbda5b54"
 }
 
 print('GET Reuqest')

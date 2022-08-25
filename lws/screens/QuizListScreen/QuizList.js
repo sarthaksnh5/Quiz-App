@@ -17,7 +17,7 @@ const QuizList = ({onPress}) => {
     {
       id: 1,
       title: 'Maths',
-      tag: 'Maths',
+      tag: 'Math',
       navigate: '',
       icon: 'compass',
       title2: 'Science',
@@ -27,8 +27,8 @@ const QuizList = ({onPress}) => {
     },
     {
       id: 3,
-      title: 'Social Science',
-      tag: 'Social',
+      title: 'General Knowledge',
+      tag: 'General',
       navigate: '',
       icon: 'map',
       title2: 'English',

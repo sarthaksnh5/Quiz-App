@@ -62,6 +62,8 @@ const LoginScreen = ({navigation}) => {
           }
         }
       } catch (e) {
+        setContent('Network Error! Please Check your network');
+        setShowSnack(true);
         console.log(e);
       }
       setLoading(false);
@@ -88,6 +90,7 @@ const LoginScreen = ({navigation}) => {
             value={username}
             onChangeText={setUsername}
             keyboardType="email-address"
+            autoFocus={true}
           />
           <InputBox
             label={'Password'}
@@ -99,7 +102,10 @@ const LoginScreen = ({navigation}) => {
             setShowPassword={setShowPassword}
           />
           <View style={styles.forgotPassword}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Reset');
+              }}>
               <Paragraph>Forgot Password?</Paragraph>
             </TouchableOpacity>
           </View>

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.lws">
+  package="com.learnwithsanyam">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

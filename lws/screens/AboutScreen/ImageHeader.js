@@ -7,8 +7,7 @@ const ImageHeader = () => {
   return (
     <View style={styles.container}>
       <View style={styles.backContainer}>
-        <AntDesign name='arrowleft' size={24} color={'white'} />
-        <Text style={styles.heading}>About Developer</Text>
+        <Text style={styles.heading}>LWS Genius Developer</Text>
       </View>
       <Image source={require('../../assets/images/profile.jpg')} style={styles.image} resizeMode={'contain'} />
     </View>

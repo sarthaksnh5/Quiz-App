@@ -5,18 +5,20 @@ import {primaryColor} from '../constants/colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
 import HomeStack from './HomeStack';
 import QuizListSceen from '../screens/QuizListScreen/QuizListSceen';
 import LeaderBoardScreen from '../screens/LeaderBoardScreen/LeaderBoardScreen';
 import ProfileStack from './ProfileStack';
 import QuestionStack from './QuestionStack';
+import AboutScreen from '../screens/AboutScreen/AboutScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      shifting={true}
+      shifting={false}
       barStyle={{
         backgroundColor: 'white',
         borderTopLeftRadius: 15,
@@ -36,20 +38,24 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         options={{
-          tabBarLabel: 'Favorite',
-          tabBarIcon: ({color}) => (
-            <AntDesign name="heart" color={color} size={24} />
+          tabBarLabel: 'Developer',
+          tabBarIcon: ({color, focused}) => (
+            <Entypo name="code" size={24} color={focused ? color : '#2cfc03'} />
           ),
         }}
-        name="Favourite"
-        component={QuizListSceen}
+        name="Developer"
+        component={AboutScreen}
       />
 
-        <Tab.Screen
+      <Tab.Screen
         options={{
           tabBarLabel: 'Forum',
           tabBarIcon: ({size, focused, color}) => (
-            <AntDesign name={focused ? "pluscircle" : "pluscircleo"} color={color} size={24} />
+            <AntDesign
+              name={focused ? 'pluscircle' : 'pluscircleo'}
+              color={color}
+              size={24}
+            />
           ),
         }}
         name="Question"
@@ -59,8 +65,12 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         options={{
           tabBarLabel: 'Leaderboard',
-          tabBarIcon: ({color}) => (
-            <FontAwesome name="trophy" color={color} size={24} />
+          tabBarIcon: ({color, focused}) => (
+            <FontAwesome
+              name="trophy"
+              color={focused ? color : '#E3D21B'}
+              size={24}
+            />
           ),
         }}
         name="Leaderboard"

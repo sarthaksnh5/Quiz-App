@@ -1,10 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {greyColor, primaryColor} from '../../constants/colors';
-import {font_ExtraBold, font_Regular} from '../../constants/fonts';
+import { url } from '../../constants/constants';
 import InputBox from '../../component/InputBox';
+import { greyColor, primaryColor } from '../../constants/colors';
+import { font_ExtraBold, font_Regular } from '../../constants/fonts';
 import Button from '../../component/Button';
-import {appURL} from '../../constants/AppConstants';
 
 const EmailResetPassword = ({
   setShowSnack,
@@ -19,12 +19,12 @@ const EmailResetPassword = ({
     if (email.length > 0) {
       setIsLoading(true);
       try {
-        const url = `${appURL}api-reset-password/`;
+        const hitURL = `${url}api-reset-password/`;
         const data = {
           email,
         };
 
-        const resp = await fetch(url, {
+        const resp = await fetch(hitURL, {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {
